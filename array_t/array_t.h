@@ -195,9 +195,7 @@ void* array_insert_element_in_order(struct array_t *that, void *element, int (*c
 {
 	int i, result;
 	void *temp_element;
-	/*
-	element = array_append_element(that, element);
-	*/ 
+
 	for(i = 0; i < that->length; i++)
 	{
 		temp_element = array_get_element_at(*that, i);
@@ -207,9 +205,7 @@ void* array_insert_element_in_order(struct array_t *that, void *element, int (*c
 			return array_insert_element_at(that, element, i);
 		}
 	}
-	/*
-	qsort_r(that->data, that->length, that->element_size, compar, NULL);
-	*/
+
 	element = array_append_element(that, element);
 	return element;
 }
@@ -218,5 +214,12 @@ void *array_search_element(struct array_t array, void *key, int (*compar)(const 
 {
 	return bsearch(key, array.data, array.length, array.element_size, compar);
 }
+
+void array_reset(struct array_t *that)
+{
+	memset(that->data, 0, that->length);
+	that->length = 0;
+}
+
 #endif
 #endif
