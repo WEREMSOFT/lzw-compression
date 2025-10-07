@@ -2,6 +2,7 @@
 #define __LZXW_COMPRESS_H__
 
 #include <memory.h>
+#include <ctype.h>
 #define __ARRAY_T_IMPLEMENTATION__
 #include "./array_t/array_t.h"
 
@@ -41,7 +42,7 @@ array_t compress(char* input_string, array_t *dictionary)
 
 	for(i = 0; i < in_strlen; i++)
 	{
-		current_char = input_string[i];
+		current_char = tolower(input_string[i]);
 		array_append_element(&current_sequence, &current_char);
 		
 		dictionary_index = get_dictionary_index(*dictionary, current_sequence);
